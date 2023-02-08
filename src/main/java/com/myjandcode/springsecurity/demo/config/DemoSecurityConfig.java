@@ -15,45 +15,24 @@ public class DemoSecurityConfig {
 
 	@Bean
 	public InMemoryUserDetailsManager userDetailsManager() {
-		
-		UserDetails john = User.builder()
-				.username("jhon")
-				.password("test123")
-				.roles("EMPLOYEE")
-				.build();
-		
-		UserDetails mary = User.builder()
-				.username("mary")
-				.password("test123")
-				.roles("MANAGER")
-				.build();
-		
-		UserDetails susan = User.builder()
-				.username("susan")
-				.password("test123")
-				.roles("ADMIN")
-				.build();
-		
+
+		UserDetails john = User.builder().username("jhon").password("test123").roles("EMPLOYEE").build();
+		UserDetails mary = User.builder().username("mary").password("test123").roles("MANAGER").build();
+		UserDetails susan = User.builder().username("susan").password("test123").roles("ADMIN").build();
+
 		return new InMemoryUserDetailsManager(john, mary, susan);
 	}
-	
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
-		return http
-				.authorizeHttpRequests(configurer ->
-				configurer
-						.anyRequest()
-						.authenticated())
-				
-				.formLogin(configurer ->
-				configurer
-						.loginPage("showMyLoginPage")
+		http.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
+
+				.formLogin(form -> form.loginPage("/showMyLoginPage")
 						.loginProcessingUrl("/authenticateTheUser")
-						.permitAll())
-				
-				.build();
+						.permitAll());
+
+		return http.build();
 	}
 
-	
 }
