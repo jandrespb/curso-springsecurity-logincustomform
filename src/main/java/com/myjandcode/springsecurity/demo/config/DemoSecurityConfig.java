@@ -26,7 +26,8 @@ public class DemoSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
-		http.authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated())
+		http.authorizeHttpRequests(authorize -> authorize
+				.anyRequest().authenticated())
 
 				.formLogin(form -> form.loginPage("/showMyLoginPage")
 						.loginProcessingUrl("/authenticateTheUser")
@@ -34,5 +35,5 @@ public class DemoSecurityConfig {
 
 		return http.build();
 	}
-
+	
 }
