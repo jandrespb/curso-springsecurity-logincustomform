@@ -16,9 +16,9 @@ public class DemoSecurityConfig {
 	@Bean
 	public InMemoryUserDetailsManager userDetailsManager() {
 
-		UserDetails john = User.builder().username("jhon").password("test123").roles("EMPLOYEE").build();
-		UserDetails mary = User.builder().username("mary").password("test123").roles("MANAGER").build();
-		UserDetails susan = User.builder().username("susan").password("test123").roles("ADMIN").build();
+		UserDetails john = User.builder().username("jhon").password("{noop}test123").roles("EMPLOYEE").build();
+		UserDetails mary = User.builder().username("mary").password("{noop}test123").roles("MANAGER").build();
+		UserDetails susan = User.builder().username("susan").password("{noop}test123").roles("ADMIN").build();
 
 		return new InMemoryUserDetailsManager(john, mary, susan);
 	}

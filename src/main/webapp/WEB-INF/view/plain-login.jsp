@@ -15,7 +15,7 @@
     * en las etiquetas input, el name="username" y password="password" deben ir con ese nombre porque es un id propio de spring security
    -->
    <p>User name: <input type="text" name="username" /></p>
-   <p>Password <input type="password" name="password" /></p>
+   <p>Password:<input type="password" name="password" /></p>
 
    <input type="submit" value="Login" />
    </form:form>
